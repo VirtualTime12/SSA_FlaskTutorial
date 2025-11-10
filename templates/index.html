@@ -11,6 +11,12 @@
 
     <p>Welcome to my student markbook, where I keep both students and marks... in a book.</p>
 
+    {% if logged_in == True %}
+        <p>Hello {{name}}. You visited my page at {{time}}</p>
+    {% else %}
+        <p>Please Login</p>
+    {% endif %}
+
     <table border="1">
         <thead>
             <th>Firstname</th>
@@ -18,11 +24,13 @@
             <th>DOB</th>
         </thead>
         <tbody>
+            {% for person in students %}
             <tr>
-                <td>Bobby</td>
-                <td>Bob</td>
-                <td>3/1/2008</td>
+                <td>{{ person['firstname'] }}</td>
+                <td>{{ person['lastname'] }}</td>
+                <td>{{person['dob']}}</td>
             </tr>
+            {% endfor %}
         </tbody>
         
     </table>
